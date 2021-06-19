@@ -39,7 +39,7 @@ app.post('/productos', (req, res) => {
 
     //READ ALL PRODUCTS
 app.get('/productos', (req, res) => {
-    productSaved.find( {} )
+    productoModel.find( {} )
         .then((productos) => res.send(productos))
         .catch((err) => res.send(err))
 })
@@ -49,7 +49,7 @@ app.put('/productos/:nombre', (req, res) => {
     const nombre = req.params.nombre;
     const precio = req.body.precio;
 
-    productSaved.updateOne({nombre: nombre}, {
+    productoModel.updateOne({nombre: nombre}, {
         $set: {precio: precio}
     })
         .then((updatedProduct) => res.send(updatedProduct))
@@ -60,7 +60,7 @@ app.put('/productos/:nombre', (req, res) => {
 app.get('/productos/:nombre', (req, res) => {
     const nombre = req.params.nombre;
 
-    userModel.findOne( {nombre: nombre} )
+    productoModel.findOne( {nombre: nombre} )
         .then((producto) => res.send(producto))
         .catch((err) => res.send(err))
 })
@@ -69,7 +69,7 @@ app.get('/productos/:nombre', (req, res) => {
 app.delete('/productos/:nombre', (req, res) => {
     const nombre = req.params.nombre;
 
-    userModel.deleteOne( {nombre: nombre} )
+    productoModel.deleteOne( {nombre: nombre} )
         .then(() => res.sendStatus(200))
         .catch((err) => res.send(err))
 })
